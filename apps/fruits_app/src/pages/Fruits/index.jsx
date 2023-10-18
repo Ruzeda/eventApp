@@ -8,7 +8,7 @@ const Fruits = () => {
   useEffect(()=>{
     axios({
         method: "GET",
-        url: "http://localhost:3000/fruits",
+        url: "/server/fruits",
     }).then((res)=>{
         console.log(res.data);
         setFruits(res.data)

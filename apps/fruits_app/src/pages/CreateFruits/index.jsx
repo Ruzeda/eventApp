@@ -12,7 +12,7 @@ const CreateFruits = () => {
         console.log(fruitData);
         axios({
             method: "POST",
-            url: "http://localhost:3000/fruits",
+            url: "/server/fruits",
             data: fruitData // YOU WILL FIND THIS DATA IN ***req.body*** OF THE ROUTE
         }).then((res) => {
             console.log(res);

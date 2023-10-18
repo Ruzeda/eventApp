@@ -24,8 +24,8 @@ app.use(morgan('dev'))
 
 
 
-
-
+// get /  SENDS REACT APP
+app.use(express.static(path.join(__dirname, "dist"))) // how we server our final built version (dist)
 
 app.use(express.json()); // adds .body to the request
 
@@ -33,9 +33,9 @@ app.use(express.json()); // adds .body to the request
 
 
 app.get("/fruits", async (req, res) => {
-    let fruitsFromDB = await Fruit.find();
+    let fruitsFromDB = await Fruit.find()
     res.send(fruitsFromDB);
-})
+});
 
 
 app.get("/", (req, res) => {
