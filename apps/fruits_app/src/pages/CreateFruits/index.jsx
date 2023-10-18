@@ -5,8 +5,10 @@ const CreateFruits = () => {
     const [fruitData, setFruitData] = useState({
         name: "",
         color: "",
-        readyToEat: false
+        readyToEat: false,
+        age: 0
     })
+    console.log(fruitData);
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(fruitData);
@@ -28,6 +30,9 @@ const CreateFruits = () => {
                 <br />
                 Is Ready To Eat: <input type="checkbox" name="readyToEat" value={fruitData.readyToEat}
                     onChange={(e) => setFruitData({ ...fruitData, readyToEat: !fruitData.readyToEat })} />
+                <br />
+                Age: <input type="number" name="age" value={fruitData.age}
+                    onChange={(e) => setFruitData({ ...fruitData, age: +e.target.value })} />
                 <br />
                 <button>Create Fruit</button>
             </form>
