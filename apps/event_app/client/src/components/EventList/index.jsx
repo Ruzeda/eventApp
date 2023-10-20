@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './EventList.css';
+import './index.css';
 
 const EventList = () => {
 
   // compnent lifecycle
   // 1. mounts (state runs, code runs, JSX gets put on screen)
   // 2. useEffects run
-  // 3. Update
+  // 3. setState
+  // 4. rerender (recalculate state, code runs, NEW JSX)
+  // 5. dismounts ?
+
+
   
   const [events, setEvents] = useState([]);
 
@@ -15,7 +19,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/server/events');
+        const response = await axios('/server/events');
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
