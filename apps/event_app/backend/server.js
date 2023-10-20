@@ -25,13 +25,15 @@ app.use(helmet());
 app.post("/events", async (req, res) => {
     // 1. get the data that was sent from the frontend
     // let eventData = req.body.eventData;
-    let { eventData } = req.body;
+
     // 2. Model.create(eventData)
+
     try {
-        let response = await Event.create(eventData);
+        let response = await Event.create(req.body);
         res.status(201).send("created a new event!")
     } catch (err) {
-        
+        console.error(err)
+        res.send("ERROR")
     }
     
 });

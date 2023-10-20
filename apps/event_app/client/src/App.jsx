@@ -8,7 +8,7 @@ function App() {
     <>
       <h1>My Events</h1>
       <EventForm />
-      <EventList />
+      {/* <EventList /> */}
     </>
   )
 }

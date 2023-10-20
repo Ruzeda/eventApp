@@ -37,14 +37,16 @@ const EventForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("doing submit");
     e.preventDefault();
 
     try {
       const response = await axios({
-        url: '/server/events', 
         method: "POST",
+        url: '/server/events', 
         data: eventData
       });
+      console.log(response);
       if (response.status >= 200 && response.status < 300) {
         console.log('Event registered successfully:', response.data);
 
