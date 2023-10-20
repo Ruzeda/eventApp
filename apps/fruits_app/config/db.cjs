@@ -17,4 +17,3 @@ mongoose.connect(connectionString, {
 mongoose.connection.once('open', ()=> {
     console.log('connected to DATABASE');
 });
-  

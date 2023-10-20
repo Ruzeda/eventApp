@@ -58,9 +58,15 @@ app.post("/fruits", async (req,res) => {
     res.status(201).send(responseFromDB)
 })
 
+app.get('/veggies', async (req, res) => {
+    let veggiesFromDB = await Veggie.find()
+    res.send(veggiesFromDB)
+})
+
 
 app.post("/veggies", async (req, res) => {
 // make Veggie model
+console.log(req.body);
    let dbResponse =  await Veggie.create(req.body);
    // the created object
    res.status(201).send(dbResponse)
