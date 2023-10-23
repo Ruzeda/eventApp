@@ -21,6 +21,14 @@ app.use(helmet());
 
 // START ROUTES //
 
+// get the events
+
+
+app.get("/events", async (req, res) => {
+    let arrayOfEvents = await Event.find();
+    res.send(arrayOfEvents);
+})
+
 
 app.post("/events", async (req, res) => {
     // 1. get the data that was sent from the frontend
