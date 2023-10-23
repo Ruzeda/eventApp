@@ -47,7 +47,9 @@ const EventForm = () => {
         data: eventData
       });
       console.log(response);
+      // get the created event 
       if (response.status >= 200 && response.status < 300) {
+        // ADD resopnse.data to the events state!
         console.log('Event registered successfully:', response.data);
 
       } else {
@@ -56,16 +58,16 @@ const EventForm = () => {
     } catch (error) {
       console.error('There was an error sending the request:', error);
     }
-    setEventData({
-      title: '',
-      date: '',
-      location: '',
-      description: '',
-      organizer: {
-        name: '',
-        role: ''
-      }
-    })
+    // setEventData({
+    //   title: '',
+    //   date: '',
+    //   location: '',
+    //   description: '',
+    //   organizer: {
+    //     name: '',
+    //     role: ''
+    //   }
+    // })
   };
 
   return (

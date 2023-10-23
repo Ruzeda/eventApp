@@ -27,7 +27,15 @@ app.use(helmet());
 app.get("/events", async (req, res) => {
     let arrayOfEvents = await Event.find();
     res.send(arrayOfEvents);
-})
+});
+
+app.delete("/events/:idOfEvent", async (req, res) => {
+    // .findByIdAndDelete()
+    let id = req.params.idOfEvent;
+    let response = await Event.findByIdAndDelete(id);
+    console.log(response);
+    res.send('deleted event!')
+});
 
 
 app.post("/events", async (req, res) => {
@@ -38,7 +46,7 @@ app.post("/events", async (req, res) => {
 
     try {
         let response = await Event.create(req.body);
-        res.status(201).send("created a new event!")
+        res.status(201).send(response)
     } catch (err) {
         console.error(err)
         res.send("ERROR")

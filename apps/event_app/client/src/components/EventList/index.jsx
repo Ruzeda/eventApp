@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
-const EventList = () => {
+const EventList = ({events, setEvents}) => {
 
   // compnent lifecycle
   // 1. mounts (state runs, code runs, JSX gets put on screen)
@@ -13,7 +13,7 @@ const EventList = () => {
 
 
   
-  const [events, setEvents] = useState([]);
+
 
   
   useEffect(() => {
@@ -39,8 +39,12 @@ const EventList = () => {
       // DELETE     /events/:idOfEvent
       url: `/server/events/${eventId}`
     })
-    // 2. It's still in state! Still on the screen
-    // 3. so - set state without this ID!
+    if (response.status === 200) {
+      // 2. It's still in state! Still on the screen
+      // 3. so - set state without this ID!
+      setEvents(events.filter(event => event._id !== eventId));
+      
+    }
   }
 
   return (
