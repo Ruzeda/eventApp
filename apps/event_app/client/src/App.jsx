@@ -12,6 +12,8 @@ function App() {
       <h1>My Events</h1>
       <EventForm  setEvents={setEvents} />
       <EventList events={events} setEvents={setEvents} />
+      {/* employee form */}
+      {/* employee list */}
     </>
   )
 }

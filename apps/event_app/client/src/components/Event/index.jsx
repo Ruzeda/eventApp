@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-const Event = ({event, handleDelete}) => {
+const Event = ({event, handleDelete, setEvents}) => {
     //  we will have many of this compnent!
 
     // EACH ONE will have a showform state
@@ -20,9 +20,28 @@ const Event = ({event, handleDelete}) => {
                 description: newDescription
             } 
             // FIND THIS IN THE REQ.BODY
+        }).then((response) => {
+
+            setEvents((events) => {
+                  // find the event to change
+                // replace it with response.body
+                // response.body is the UPDATED object 
+                // []
+                
+                let stateCopy = events.map((eventObj) => {
+                    if (eventObj._id === response.data._id) {
+                        return response.data;
+                    } else {
+                        return eventObj
+                    }
+                });
+                return stateCopy
+
+                
+            })
         })
     }
-    
+
   return (
     <div key={event._id} className="event-item">
     <button onClick={() => handleDelete(event._id)}>Delete</button>
