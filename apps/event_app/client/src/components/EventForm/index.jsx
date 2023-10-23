@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const EventForm = () => {
+const EventForm = ({setEvents}) => {
   
   const [eventData, setEventData] = useState({
     title: '',
@@ -13,9 +13,6 @@ const EventForm = () => {
       role: ''
     }
   });
-
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEventData((prevState) => ({
@@ -23,7 +20,6 @@ const EventForm = () => {
       [name]: value
     }));
   };
-
   const handleOrganizerChange = (e) => {
 
     const { name, value } = e.target;
@@ -47,9 +43,12 @@ const EventForm = () => {
         data: eventData
       });
       console.log(response);
-      // get the created event 
+      // get the created event
       if (response.status >= 200 && response.status < 300) {
-        // ADD resopnse.data to the events state!
+        // ADD response.data to the events state!
+        setEvents((events) => {
+          return [...events, response.data]
+        });
         console.log('Event registered successfully:', response.data);
 
       } else {
