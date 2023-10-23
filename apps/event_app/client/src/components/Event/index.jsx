@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import axios from 'axios';
 import React, { useState } from 'react'
 
 const Event = ({event, handleDelete}) => {
@@ -5,7 +7,22 @@ const Event = ({event, handleDelete}) => {
 
     // EACH ONE will have a showform state
     const [show, setShow] = useState(false);
-
+    const [newDescription, setNewDescription] = useState(event.description);
+   
+    const handleClick = (eventId) => {
+        // axios call to our PUT route
+        // id,   new information
+        // PUT            /events/:idOfEvent/
+        axios({
+            url: `/server/events/${eventId}`,
+            method: "PUT",
+            data: {  
+                description: newDescription
+            } 
+            // FIND THIS IN THE REQ.BODY
+        })
+    }
+    
   return (
     <div key={event._id} className="event-item">
     <button onClick={() => handleDelete(event._id)}>Delete</button>
@@ -20,7 +37,11 @@ const Event = ({event, handleDelete}) => {
       <p>Role: {event.organizer.role}</p>
     </div>
     {/* show form? */}
-    {/* show ? <form></form> : <></> */}
+   { show ? <form onSubmit={(e) => e.preventDefault()} >
+                <input value={newDescription} onChange={(e) => setNewDescription(e.target.value)}  />
+                <button onClick={() => handleClick(event._id)} >Update this Event</button>
+            </form> 
+            : <></>}
   </div>
   )
 }

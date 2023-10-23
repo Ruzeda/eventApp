@@ -37,6 +37,13 @@ app.delete("/events/:idOfEvent", async (req, res) => {
     res.send('deleted event!')
 });
 
+app.put('/events/:idOfEvent', async (req, res) => {
+    let id = req.params.idOfEvent;
+    let response = await Event.findByIdAndUpdate(id,  req.body, { new: true } );
+    console.log(response);
+    res.send(response)
+});
+
 
 app.post("/events", async (req, res) => {
     // 1. get the data that was sent from the frontend
