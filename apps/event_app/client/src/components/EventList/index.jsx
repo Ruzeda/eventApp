@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
+import Event from '../Event';
 
 const EventList = ({events, setEvents}) => {
 
@@ -47,22 +48,18 @@ const EventList = ({events, setEvents}) => {
     }
   }
 
+// showForm, setShowForm = useState(false)
+// idToShow
+
+// which event should the form change?
+// ONE FORM?
+// a form for each?
+
   return (
     <div className="event-list">
       <h1>My List Of Events</h1>
       {events.map(event => (
-        <div key={event._id} className="event-item">
-          <button onClick={() => handleDelete(event._id)}>Delete</button>
-          <h2>{event.title}</h2>
-          <p>Date: {event.date}</p>
-          <p>Location: {event.location}</p>
-          <p>Description: {event.description}</p>
-          <div className="organizer">
-            <strong>Organizer:</strong>
-            <p>Name: {event.organizer.name}</p>
-            <p>Role: {event.organizer.role}</p>
-          </div>
-        </div>
+        <Event key={event._id} event={event} handleDelete={handleDelete} />
       ))}
     </div>
   );
